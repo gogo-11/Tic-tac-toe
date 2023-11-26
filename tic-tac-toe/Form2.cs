@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,10 +105,10 @@ namespace tic_tac_toe
             //___________________________________________________________________________________________________
             for(int i = 0; i < 3; i++)
             {
-                if ((gameMatrixCheck[i, 0] != null) && (gameMatrixCheck[i, 1] != null) && (gameMatrixCheck[i, 2] != null))
+                if (gameMatrixCheck[i, 0] != null && gameMatrixCheck[i, 1] != null && gameMatrixCheck[i, 2] != null)
                 {
-                    if ((gameMatrixCheck[i, 0].Equals(gameMatrixCheck[i, 1]))
-                    && (gameMatrixCheck[i, 1].Equals(gameMatrixCheck[i, 2])))
+                    if (gameMatrixCheck[i, 0].Equals(gameMatrixCheck[i, 1])
+                    && gameMatrixCheck[i, 1].Equals(gameMatrixCheck[i, 2]))
                     {
                         if (gameMatrixCheck[i, 0].Equals(playerOneCharacter.ToString()))
                         {
@@ -121,127 +122,49 @@ namespace tic_tac_toe
                 }
             }
 
-            /*if ((gameMatrixCheck[0, 0] != null) && (gameMatrixCheck[0, 1] != null) && (gameMatrixCheck[0, 2] != null))
-            {
-                if ((gameMatrixCheck[0, 0].Equals(gameMatrixCheck[0, 1])) 
-                    && (gameMatrixCheck[0, 1].Equals(gameMatrixCheck[0, 2])))
-                {
-                    if (gameMatrixCheck[0, 0].Equals(playerOneCharacter.ToString()))
-                    {
-                        counterWin1 = true;
-                    }
-                    else if (gameMatrixCheck[0, 0].Equals(playerTwoCharacter.ToString()))
-                    {
-                        counterWin2 = true;
-                    }
-                }
-            }
-            if ((gameMatrixCheck[1, 0] != null) && (gameMatrixCheck[1, 1] != null) && (gameMatrixCheck[1, 2] != null))
-            {
-                if ((gameMatrixCheck[1, 0].Equals(gameMatrixCheck[1, 1])) && (gameMatrixCheck[1, 1].Equals(gameMatrixCheck[1, 2])))
-                {
-                    if (gameMatrixCheck[1, 0].Equals(playerOneCharacter.ToString()))
-                    {
-                        counterWin1 = true;
-                    }
-                    else if (gameMatrixCheck[1, 0].Equals(playerTwoCharacter.ToString()))
-                    {
-                        counterWin2 = true;
-                    }
-                } 
-            }
-            if ((gameMatrixCheck[2, 0] != null) && (gameMatrixCheck[2, 1] != null) && (gameMatrixCheck[2, 2] != null))
-            {
-            if ((gameMatrixCheck[2, 0].Equals(gameMatrixCheck[2, 1])) && (gameMatrixCheck[2, 1].Equals(gameMatrixCheck[2, 2])))
-                {
-                    if (gameMatrixCheck[2, 0].Equals(playerOneCharacter.ToString()))
-                    {
-                        counterWin1 = true;
-                    }
-                    else if (gameMatrixCheck[2, 0].Equals(playerTwoCharacter.ToString()))
-                    {
-                        counterWin2 = true;
-                    }
-                }
-            }*/
             //___________________________________________________________________________________________________
-            // проверка за победа по колона
+            // check column win
             //___________________________________________________________________________________________________
 
-            if ((gameMatrixCheck[0, 0] != null) && (gameMatrixCheck[1, 0] != null) && (gameMatrixCheck[2, 0] != null))
+            for (int i = 0; i < 3; i++)
             {
-                if ((gameMatrixCheck[0, 0].Equals(gameMatrixCheck[1, 0])) && (gameMatrixCheck[1, 0].Equals(gameMatrixCheck[2, 0])))
+                if ((gameMatrixCheck[0, i] != null) && (gameMatrixCheck[1, i] != null) && (gameMatrixCheck[2, i] != null))
                 {
-                    if (gameMatrixCheck[0, 0].Equals(playerOneCharacter.ToString()))
+                    if (gameMatrixCheck[0, i].Equals(gameMatrixCheck[1, i])
+                    && gameMatrixCheck[1, i].Equals(gameMatrixCheck[2, i]))
                     {
-                        counterWin1 = true;
-                    }
-                    else if (gameMatrixCheck[0, 0].Equals(playerTwoCharacter.ToString()))
-                    {
-                        counterWin2 = true;
-                    }
-                }
-            }
-            if ((gameMatrixCheck[0, 1] != null) && (gameMatrixCheck[1, 1] != null) && (gameMatrixCheck[2, 1] != null))
-            {
-                if ((gameMatrixCheck[0, 1].Equals(gameMatrixCheck[1, 1])) && (gameMatrixCheck[1, 1].Equals(gameMatrixCheck[2, 1])))
-                {
-                    if (gameMatrixCheck[0, 1].Equals(playerOneCharacter.ToString()))
-                    {
-                        counterWin1 = true;
-                    }
-                    else if (gameMatrixCheck[0, 1].Equals(playerTwoCharacter.ToString()))
-                    {
-                        counterWin2 = true;
-                    }
-                }
-            }
-            if ((gameMatrixCheck[0, 2] != null) && (gameMatrixCheck[1, 2] != null) && (gameMatrixCheck[2, 2] != null))
-            {
-                if ((gameMatrixCheck[0, 2].Equals(gameMatrixCheck[1, 2])) && (gameMatrixCheck[1, 2].Equals(gameMatrixCheck[2, 2])))
-                {
-                    if (gameMatrixCheck[0, 2].Equals(playerOneCharacter.ToString()))
-                    {
-                        counterWin1 = true;
-                    }
-                    else if (gameMatrixCheck[0, 2].Equals(playerTwoCharacter.ToString()))
-                    {
-                        counterWin2 = true;
-                    }
-                }
-            }
-            //___________________________________________________________________________________________________
-            // проверка за победа по диагонал
-            //___________________________________________________________________________________________________
-            if ((gameMatrixCheck[0, 0] != null) && (gameMatrixCheck[1, 1] != null) && (gameMatrixCheck[2, 2] != null))
-            {
-                if ((gameMatrixCheck[0, 0].Equals(gameMatrixCheck[1, 1])) && (gameMatrixCheck[1, 1].Equals(gameMatrixCheck[2, 2])))
-                {
-                    if (gameMatrixCheck[0, 0].Equals(playerOneCharacter.ToString()))
-                    {
-                        counterWin1 = true;
-                    }
-                    else if (gameMatrixCheck[0, 0].Equals(playerTwoCharacter.ToString()))
-                    {
-                        counterWin2 = true;
-                    }
-                }
-            }
-            if ((gameMatrixCheck[0, 2] != null) && (gameMatrixCheck[1, 1] != null) && (gameMatrixCheck[2, 0] != null))
-            {
-                if ((gameMatrixCheck[0, 2].Equals(gameMatrixCheck[1, 1])) && (gameMatrixCheck[1, 1].Equals(gameMatrixCheck[2, 0])))
-                {
-                    if (gameMatrixCheck[0, 2].Equals(playerOneCharacter.ToString()))
-                    {
-                        counterWin1 = true;
-                    }
-                    else if (gameMatrixCheck[0, 2].Equals(playerTwoCharacter.ToString()))
-                    {
-                        counterWin2 = true;
+                        if (gameMatrixCheck[0, i].Equals(playerOneCharacter.ToString()))
+                        {
+                            counterWin1 = true;
+                        }
+                        else if (gameMatrixCheck[0, i].Equals(playerTwoCharacter.ToString()))
+                        {
+                            counterWin2 = true;
+                        }
                     }
                 }
             }
 
+            //___________________________________________________________________________________________________
+            // check diagonal win
+            //___________________________________________________________________________________________________
+            if (gameMatrixCheck[1, 1] != null)
+            {
+                if (Enumerable.Range(1, gameMatrixCheck.GetLength(0) - 1)
+                    .All(i => gameMatrixCheck[i, i] == gameMatrixCheck[i - 1, i - 1])
+                    || Enumerable.Range(1, gameMatrixCheck.GetLength(0) - 1)
+                        .All(i => gameMatrixCheck[i, gameMatrixCheck.GetLength(0) - 1 - i] == gameMatrixCheck[i - 1, gameMatrixCheck.GetLength(0) - i]))
+                {
+                    if (gameMatrixCheck[1, 1].Equals(playerOneCharacter.ToString()))
+                    {
+                        counterWin1 = true;
+                    }
+                    else if (gameMatrixCheck[1, 1].Equals(playerTwoCharacter.ToString()))
+                    {
+                        counterWin2 = true;
+                    }
+                }
+            }
 
             if (counterWin1)
             {
@@ -264,7 +187,7 @@ namespace tic_tac_toe
                 gameCounter++;
                 textBoxGamesCount.Text = gameCounter.ToString();
                 textBoxPlayerTurn.Text = "";
-                Array.Clear(gameMatrixCheck, 0, gameMatrixCheck.Length); //gameMatrixCheck = null;
+                Array.Clear(gameMatrixCheck, 0, gameMatrixCheck.Length);
                 clearButtonsValues();
                 counterWin2 = false;
                 return;
@@ -309,7 +232,7 @@ namespace tic_tac_toe
 
         private void buttonCoinToss_Click(object sender, EventArgs e)
         {
-            //хвърля се ези тура
+            //heads-tails draw
             Random r1 = new Random();
             int coinHeadsTails = r1.Next(0,2);
             if (coinHeadsTails == 0)
@@ -342,7 +265,7 @@ namespace tic_tac_toe
             this.textBoxPlayerStarts.Enabled = true;
             this.textBoxGamesCount.Enabled = true;
 
-            //присвоява се цвят на фигурката, с която играе съответният играч
+            //set character color
             switch (playerOneColor)
             {
                 case "red":
@@ -373,7 +296,7 @@ namespace tic_tac_toe
                     break;
             }
 
-            //определя се кой стартира играта, като се сравни резултата от хвърлянето на монета
+            //decide who starts the game
             if (coinTossBool)
             {
                 textBoxPlayerStarts.Text = "Player one starts the game";
@@ -512,8 +435,7 @@ namespace tic_tac_toe
                 MessageBoxIcon.Warning) == DialogResult.Yes;
             if (answer)
             {
-                this.Close();
-                MessageBox.Show("You exited the game.\nGoodbye!");
+                //this.Close();
                 Environment.Exit(1);
             }
         }
